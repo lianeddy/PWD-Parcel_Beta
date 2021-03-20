@@ -6,7 +6,8 @@ import {
   LandingPage, 
   RegisterPage, 
   VerifyPage, 
-  CartPage} from "./pages";
+  CartPage,
+  ProductDetail} from "./pages";
 
 class App extends Component {
   state = {};
@@ -19,7 +20,7 @@ class App extends Component {
         <Route path="/register"  component={RegisterPage} />
         <Route path="/verify"  component={VerifyPage} />
         <Route path="/cart"  component={CartPage} />
-
+        <Route path ="/product-detail" component={ProductDetail} />
       </div>
     );
   }
