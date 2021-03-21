@@ -16,17 +16,3 @@ export const fetchProductByIdAction = (id) => {
     };
   };
   
-  // export const getCartByIdAction = (id) => {
-  //   return (dispatch) => {
-  //     Axios.get(`${api_url}/cart?userID=${id}`)
-  //       .then(({ data }) => {
-  //         dispatch({
-  //           type: API_CART,
-  //           payload: data,
-  //         });
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   };
-  // };

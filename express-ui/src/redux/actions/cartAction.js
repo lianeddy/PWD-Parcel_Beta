@@ -5,6 +5,8 @@ import {
     API_CART
   } from "../types";
 
+
+  
 export const getCartByIdAction = (id) => {
     return (dispatch) => {
       Axios.get(`${api_url}/cart?userID=${id}`)
@@ -19,6 +21,7 @@ export const getCartByIdAction = (id) => {
         });
     };
   };
+
 export const editCartAction = (data) => {
     return (dispatch) => {
       Axios.patch(`${api_url}/cart/${data.id}`, {
@@ -41,7 +44,11 @@ export const editCartAction = (data) => {
         .then((res) => {
           console.log("data masuk");
           // swal("Success!", "Product added to cart!", "success");
-          alert("Added to cart!");
+          swal.fire({
+            icon: 'success',
+            title: 'success',
+            text: 'Added to cart!',
+          });
           dispatch({
             type: "ADD_TO_CART",
           });
@@ -49,7 +56,7 @@ export const editCartAction = (data) => {
         })
         .catch((err) => {
           console.log(err);
-          swal(
+          alert(
             "Something went wrong",
             "Please contact an Administrator",
             "error"

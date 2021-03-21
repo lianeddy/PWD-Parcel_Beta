@@ -24,7 +24,51 @@ class ProductDetail extends Component {
     fetchProductByIdAction(productID);
   }
 
-  
+  increaseQty = () => {
+    this.setState({
+      qtySelected: this.state.qtySelected + 1,
+    });
+  };
+
+  decreaseQty = () => {
+    this.setState({
+      qtySelected: this.state.qtySelected - 1,
+    });
+  };
+  addToCart = () => {
+    const {
+      productById,
+      userID,
+      addToCartAction,
+      cartList,
+      editCartAction,
+    } = this.props;
+    const { qtySelected } = this.state;
+    const { id, isAvailable } = productById;
+    if (userID === 0) {
+      alert("Please login before making a purchase");
+    } else {
+      const duplicate = cartList.find((val) => val.productID === id);
+      if (!duplicate) {
+        const dataCart = {
+          quantity: qtySelected,
+          userID,
+          productID: id,
+        };
+        addToCartAction(dataCart);
+      } else {
+        if (duplicate.qty + qtySelected > isAvailable) {
+          alert("not enough stock");
+        } else {
+          editCartAction({
+            id: duplicate.id,
+            qty: duplicate.qty + qtySelected,
+            userID,
+          });
+        }
+      }
+    }
+  };
 
   render() {
     const { productName, price, isAvailable,description, imagepath } = this.props.productById;
@@ -50,7 +94,24 @@ class ProductDetail extends Component {
             Description : {description}
             </div>
             <div>
-              <Button color="info">
+            <Button
+                color="info"
+                onClick={this.decreaseQty}
+                disabled={this.state.qtySelected === 1}
+              >
+                -
+              </Button>
+              {this.state.qtySelected}
+              <Button
+                color="info"
+                onClick={this.increaseQty}
+                disabled={this.state.qtySelected === isAvailable}
+              >
+                +
+              </Button>
+            </div>
+            <div>
+              <Button color="info" onClick={this.addToCart}>
                 Add to Cart
               </Button>
             </div>
@@ -63,9 +124,9 @@ class ProductDetail extends Component {
 
 const mapStatetoProps = ({ product, user, cart }) => {
   return {
+    cartList: cart.cart,
     productById: product.productById,
     userID: user.id,
-    cartList: cart.cart,
   };
 };
 
