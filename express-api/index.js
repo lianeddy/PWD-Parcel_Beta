@@ -7,6 +7,8 @@ const port = 2000;
 const { transporter } = require("./helper");
 const {
   userRouter, 
+  cartRouter,
+  productRouter
 } = require("./router");
 
 const app = express();
@@ -41,5 +43,7 @@ app.get("/", (req, res) => {
   });
   
   app.use("/users", userRouter);
+  app.use("/cart", cartRouter);
+  app.use("/product", productRouter);
 
 app.listen(port, () => console.log(`API active at port ${port}`))

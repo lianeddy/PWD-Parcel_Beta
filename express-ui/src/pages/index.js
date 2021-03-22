@@ -3,10 +3,12 @@ import LandingPage from "./LandingPage";
 import RegisterPage from "./RegisterPage";
 import VerifyPage from "./VerifyPage";
 import CartPage from "./CartPage";
+import ProductDetail from "./ProductDetail"
 
 export {
     LoginPage, 
     LandingPage, 
     RegisterPage, 
     VerifyPage,
-    CartPage};
+    CartPage,
+    ProductDetail};
