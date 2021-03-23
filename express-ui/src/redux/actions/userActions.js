@@ -17,7 +17,7 @@ export const loginAction = (data) => {
         verified,
         token,
       } = response.data;
-      localStorage.setItem("token", token);
+      localStorage.getItem("token", token);
       dispatch({
         type: "LOGIN",
         payload: { id, username, email, roleID, verified },
@@ -76,32 +76,32 @@ export const keepLoginAction = () => {
   };
 };
 
-// export const changePassAction = (data) => {
-//   return async (dispatch) => {
-//     dispatch({ type: "API_USER_START" });
-//     const headers = {
-//       headers: {
-//         Authorization: `Bearer ${data.token}`,
-//       },
-//     };
-//     try {
-//       await Axios.post(
-//         `${url}/change-pass`,
-//         { password: data.password },
-//         headers
-//       );
-//       alert("Password anda berhasil diganti");
-//       dispatch({
-//         type: "API_USER_SUCCESS",
-//       });
-//     } catch (err) {
-//       dispatch({
-//         type: "API_USER_FAILED",
-//         payload: err.message,
-//       });
-//     }
-//   };
-// };
+export const changePassAction = (data) => {
+  return async (dispatch) => {
+    dispatch({ type: "API_USER_START" });
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${data.token}`,
+      },
+    };
+    try {
+      await Axios.post(
+        `${url}/change-pass`,
+        { password: data.password },
+        headers
+      );
+      alert("Password anda berhasil diganti");
+      dispatch({
+        type: "API_USER_SUCCESS",
+      });
+    } catch (err) {
+      dispatch({
+        type: "API_USER_FAILED",
+        payload: err.message,
+      });
+    }
+  };
+};
 
 export const sendEmailChangeAction = (data) => {
   return async (dispatch) => {

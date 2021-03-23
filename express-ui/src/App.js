@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Route} from 'react-router-dom'
 import {
-  ForgetPage, 
   LoginPage,
+  ForgetPage,
+  CartPage,
+  ChangePassPage,
+  LoginAdminPage, 
 } from './pages'
 import {keepLoginAction} from './redux/actions'
 import Header from './component/Header'
-// import ChangePassPage from './pages/ChangePassPage';
-// import { loginAction } from './redux/actions'
 
 class App extends Component {
 	state = {};
@@ -27,7 +28,8 @@ class App extends Component {
         <Route path='/login' component={LoginPage} />
         {/* <Route path='/cartpage' component={CartPage} /> */}
         <Route path='/forgetpage' component={ForgetPage} />
-        {/* <Route path='/change-password' component={ChangePassPage} /> */}
+        <Route path='/change-password' component={ChangePassPage} />
+        <Route path='/loginadmin' component={LoginAdminPage} />
       </div>
      );
   }

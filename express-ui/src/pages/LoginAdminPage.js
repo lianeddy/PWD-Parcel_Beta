@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { loginAction } from "../redux/actions";
 import { Link, Redirect } from "react-router-dom";
 
-class LoginPage extends Component {
+class LoginAdminPage extends Component {
   state = {
     email: "",
     password: "",
@@ -18,9 +18,9 @@ class LoginPage extends Component {
   };
 
   render() {
-    const { loading, email, loginAction } = this.props;
-    if (email) {
-      return <Redirect to="/" />;
+    const { loading, roleID, loginAction } = this.props;
+    if (roleID === 1) {
+      return <Redirect to="/admindashboard" />;
     }
     return (
       <div className="container"
@@ -72,9 +72,9 @@ class LoginPage extends Component {
 
 const mapStatetoProps = ({ user }) => {
   return {
-    email: user.email,
+    roleID: user.roleID,
     loading: user.loading,
   };
 };
 
-export default connect(mapStatetoProps, { loginAction })(LoginPage);
+export default connect(mapStatetoProps, { loginAction })(LoginAdminPage);
