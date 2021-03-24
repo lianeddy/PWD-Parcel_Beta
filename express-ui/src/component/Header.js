@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
     Nav,
     Navbar,
     NavbarBrand,
-    NavbarText,
+    // NavbarText,
     NavbarToggler,
     NavItem,
     NavLink,
@@ -57,14 +57,38 @@ class Header extends Component {
               </UncontrolledDropdown>
             </Nav>
 
-            <NavbarText><Link to="/Register" style={{textDecoration:"none", color:"brown"}}> Register</Link></NavbarText>
-            <NavbarText>&nbsp;| &nbsp;  </NavbarText>
-            <NavbarText><Link to="/login" style={{textDecoration:"none", color:"brown"}}> Login</Link></NavbarText>
-            <NavbarText>&nbsp;| &nbsp;  </NavbarText>
-            <NavbarText onClick={logoutAction}><Link to="/login" 
-            style={{textDecoration:"none", color:"brown"}}> Logout</Link></NavbarText>
-            <NavbarText>&nbsp;| &nbsp;  </NavbarText>
-            <NavbarText>{email ? email.split("@")[0] : null } </NavbarText>
+{this.props.email !== '' ? (
+            <UncontrolledDropdown>
+              <DropdownToggle nav caret>Halo {email.split("@")[0]}</DropdownToggle>
+              <DropdownMenu left>
+                <Link to="/">
+                  <DropdownItem onClick={this.props.logoutAction}>
+                    Log Out
+                    </DropdownItem>
+                </Link>
+                <Link to="/loginadmin">
+                  <DropdownItem>
+                    as Admin
+                    </DropdownItem>
+                </Link>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            ) : (
+            <UncontrolledDropdown>
+              <DropdownToggle nav caret>User</DropdownToggle>
+              <DropdownMenu right>
+                <Link to="/login">
+                  <DropdownItem>
+                    Login
+                  </DropdownItem>
+                </Link>
+              <Link to="/register" >
+                  <DropdownItem>
+                 Register
+                 </DropdownItem>
+                </Link>
+              </DropdownMenu>
+            </UncontrolledDropdown>)}
 
           </Collapse>
         </Navbar>

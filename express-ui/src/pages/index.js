@@ -4,6 +4,9 @@ import RegisterPage from "./RegisterPage";
 import VerifyPage from "./VerifyPage";
 import CartPage from "./CartPage";
 import ProductDetail from "./ProductDetail";
+import ForgetPage from "./ForgetPage";
+import ChangePassPage from "./ChangePassPage";
+import LoginAdminPage from "./LoginAdminPage";
 
 export {
   LoginPage,
@@ -12,4 +15,7 @@ export {
   VerifyPage,
   CartPage,
   ProductDetail,
+  ForgetPage,
+  ChangePassPage,
+  LoginAdminPage,
 };

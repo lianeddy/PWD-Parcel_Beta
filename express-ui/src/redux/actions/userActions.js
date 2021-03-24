@@ -13,16 +13,9 @@ const url = api_url + "/users";
 export const registerAction = (data) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: API_USER_START });
-      const response = await Axios.post(`${url}/register`, data);
-      if (response.status === 202) {
-        dispatch({
-          type: API_USER_SUCCESS,
-        });
-        return Swal.fire(response.data.message);
-      }
+      const response = await Axios.post(`${url}/login`, data);
       const { id, username, email, roleID, verified, token } = response.data;
-      localStorage.setItem("token", token);
+      localStorage.getItem("token", token);
       dispatch({
         type: LOGIN,
         payload: { id, username, email, roleID, verified },
@@ -110,32 +103,32 @@ export const keepLoginAction = () => {
   };
 };
 
-// export const changePassAction = (data) => {
-//   return async (dispatch) => {
-//     dispatch({ type: "API_USER_START" });
-//     const headers = {
-//       headers: {
-//         Authorization: `Bearer ${data.token}`,
-//       },
-//     };
-//     try {
-//       await Axios.post(
-//         `${url}/change-pass`,
-//         { password: data.password },
-//         headers
-//       );
-//       alert("Password anda berhasil diganti");
-//       dispatch({
-//         type: "API_USER_SUCCESS",
-//       });
-//     } catch (err) {
-//       dispatch({
-//         type: "API_USER_FAILED",
-//         payload: err.message,
-//       });
-//     }
-//   };
-// };
+export const changePassAction = (data) => {
+  return async (dispatch) => {
+    dispatch({ type: "API_USER_START" });
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${data.token}`,
+      },
+    };
+    try {
+      await Axios.post(
+        `${url}/change-pass`,
+        { password: data.password },
+        headers
+      );
+      alert("Password anda berhasil diganti");
+      dispatch({
+        type: "API_USER_SUCCESS",
+      });
+    } catch (err) {
+      dispatch({
+        type: "API_USER_FAILED",
+        payload: err.message,
+      });
+    }
+  };
+};
 
 export const sendEmailChangeAction = (data) => {
   return async (dispatch) => {

@@ -9,6 +9,8 @@ import {
   VerifyPage,
   CartPage,
   ProductDetail,
+  ChangePassPage,
+  LoginAdminPage,
 } from "./pages";
 import { keepLoginAction } from "./redux/actions";
 import Header from "./component/Header";
@@ -38,6 +40,9 @@ class App extends Component {
         <Route path="/verify" component={VerifyPage} />
         <Route path="/cart" component={CartPage} />
         <Route path="/product-detail" component={ProductDetail} />
+        <Route path="/forgetpage" component={ForgetPage} />
+        <Route path="/change-password" component={ChangePassPage} />
+        <Route path="/loginadmin" component={LoginAdminPage} />
       </div>
     );
   }

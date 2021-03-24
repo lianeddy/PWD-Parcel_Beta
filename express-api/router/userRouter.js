@@ -33,9 +33,9 @@ router.post("/login", (req, res) => {
         email, 
         roleID, 
         verified 
-        FROM users WHERE email = '${email}' AND password = '${(
-          password      
-    )}'`;
+        FROM users WHERE email = '${email}' AND password = '${hashPassword(
+          password
+        )}'`;
   db.query(sql, (err, data) => {
     if (err) {
       return res.status(500).send(err);
@@ -84,7 +84,7 @@ router.post("/change-email", (req, res) => {
     const mailOptions = {
       from: "Admin <kepinmahen@gmail.com>",
       to: email,
-      subject: "Forget Password Commerce",
+      subject: "Tautan untuk ganti kata sandi dari situs web Parcel",
       html: `<a href="http://localhost:3000/change-password?token=${token}">Klik disini untuk mengganti password anda</a>`,
     };
     transporter.sendMail(mailOptions, (err, info) => {
