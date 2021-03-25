@@ -104,4 +104,3 @@ const mapStateToProps = ({user : {email}}) => {
 }
 
 export default connect (mapStateToProps, {logoutAction})(Header)
-
