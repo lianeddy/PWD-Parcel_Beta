@@ -4,9 +4,11 @@ import {Route} from 'react-router-dom'
 import {
   LoginPage,
   ForgetPage,
-  CartPage,
+  CartPagee,
   ChangePassPage,
-  LoginAdminPage, 
+  LoginAdminPage,
+  // GraphicPage,
+  // AdminDashBoard, 
 } from './pages'
 import {keepLoginAction} from './redux/actions'
 import Header from './component/Header'
@@ -25,11 +27,14 @@ class App extends Component {
     return ( 
       <div>
         <Header />
+        {/* <SideBar /> */}
         <Route path='/login' component={LoginPage} />
-        {/* <Route path='/cartpage' component={CartPage} /> */}
+        <Route path='/cartpage' component={CartPagee} />
         <Route path='/forgetpage' component={ForgetPage} />
         <Route path='/change-password' component={ChangePassPage} />
         <Route path='/loginadmin' component={LoginAdminPage} />
+        {/* <Route path='/admindashboard' component={AdminDashBoard} /> */}
+        {/* <Route path='/graphicpage' component={GraphicPage} /> */}
       </div>
      );
   }

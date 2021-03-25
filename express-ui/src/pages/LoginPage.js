@@ -20,7 +20,7 @@ class LoginPage extends Component {
   render() {
     const { loading, email, loginAction } = this.props;
     if (email) {
-      return <Redirect to="/" />;
+      return <Redirect to="/products" />;
     }
     return (
       <div className="container"

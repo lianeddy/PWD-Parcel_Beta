@@ -2,7 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const mysql = require("mysql")
-const { userRouter } = require("./router")
+const { userRouter, cartRouter } = require("./router")
 const { transporter } = require("./helper")
 const bearerToken = require("express-bearer-token");
 
@@ -20,6 +20,7 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
     res.status(200).send("<h1>Express API</h1>")
 })
+
 
 app.post("/email", (req, res) => {
     const to = req.query.email;
@@ -42,5 +43,6 @@ app.post("/email", (req, res) => {
   });
 
 app.use("/users", userRouter)
+app.use("/cart", cartRouter)
 
 app.listen(port,() => console.log(`API Active at port ${port}`))

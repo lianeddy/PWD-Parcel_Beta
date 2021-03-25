@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.Sidebar {
+  width: 100vw;
+  height: 100vw;
+  height: 100%;
+  width: 250px;
+  background-color: pink;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

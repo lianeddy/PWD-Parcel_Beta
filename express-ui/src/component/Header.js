@@ -11,8 +11,8 @@ import {connect} from 'react-redux'
     NavbarBrand,
     // NavbarText,
     NavbarToggler,
-    NavItem,
-    NavLink,
+    // NavItem,
+    // NavLink,
     UncontrolledDropdown,
   } from "reactstrap";
   import { logoutAction } from "../redux/actions";
@@ -32,17 +32,17 @@ class Header extends Component {
   };
 
   render() {
-    const {email, logoutAction} = this.props
+    const {email} = this.props
     return (
       <div>
         <Navbar  light expand="md" style={{backgroundColor:"#FAEAF0"}}>
-          <NavbarBrand> <Link to="/"><img src={logo} alt="logo" style={{width:"30 px", height:"70px" }} /> </Link></NavbarBrand>
+          <NavbarBrand href="/"> <Link to="/"><img src={logo} alt="logo" style={{width:"30 px", height:"70px" }} /> </Link></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/">Home</NavLink>  
-              </NavItem>
+              </NavItem> */}
               
               
               <UncontrolledDropdown nav inNavbar>
