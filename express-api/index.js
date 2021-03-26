@@ -1,7 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mysql = require("mysql");
+const express = require("express")
+const cors = require("cors")
+const bodyParser = require("body-parser")
+const mysql = require("mysql")
+const { userRouter, cartRouter } = require("./router")
+const { transporter } = require("./helper")
 const bearerToken = require("express-bearer-token");
 const port = 2000;
 const { transporter } = require("./helper");
@@ -46,4 +48,5 @@ app.get("/", (req, res) => {
   app.use("/cart", cartRouter);
   app.use("/product", productRouter);
 
-app.listen(port, () => console.log(`API active at port ${port}`))
+
+app.listen(port,() => console.log(`API Active at port ${port}`))

@@ -1,4 +1,5 @@
 import LoginPage from "./LoginPage";
+import CartPagee from "./CartPagee";
 import LandingPage from "./LandingPage";
 import RegisterPage from "./RegisterPage";
 import VerifyPage from "./VerifyPage";
@@ -14,6 +15,7 @@ export {
   RegisterPage,
   VerifyPage,
   CartPage,
+  CartPagee,
   ProductDetail,
   ForgetPage,
   ChangePassPage,

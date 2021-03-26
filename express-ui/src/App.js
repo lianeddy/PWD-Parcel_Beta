@@ -8,6 +8,7 @@ import {
   RegisterPage,
   VerifyPage,
   CartPage,
+  CartPagee,
   ProductDetail,
   ChangePassPage,
   LoginAdminPage,
