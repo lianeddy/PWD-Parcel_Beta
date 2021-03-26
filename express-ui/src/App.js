@@ -8,10 +8,10 @@ import {
   ChangePassPage,
   LoginAdminPage,
   // GraphicPage,
-  // AdminDashBoard, 
+  AdminDashBoard, 
 } from './pages'
 import {keepLoginAction} from './redux/actions'
-import Header from './component/Header'
+import {Header} from './component'
 
 class App extends Component {
 	state = {};
@@ -23,22 +23,58 @@ class App extends Component {
 		}
 	}
 
-  render() { 
-    return ( 
-      <div>
-        <Header />
-        {/* <SideBar /> */}
-        <Route path='/login' component={LoginPage} />
-        <Route path='/cartpage' component={CartPagee} />
-        <Route path='/forgetpage' component={ForgetPage} />
-        <Route path='/change-password' component={ChangePassPage} />
-        <Route path='/loginadmin' component={LoginAdminPage} />
-        {/* <Route path='/admindashboard' component={AdminDashBoard} /> */}
-        {/* <Route path='/graphicpage' component={GraphicPage} /> */}
-      </div>
-     );
+  render () {
+    // if (roleID === 1) {
+
+      return (
+          <div>
+            {/* <div> */}
+              <Header />
+            {/* </div> */}
+            {/* <div style={{display: 'flex'}}> */}
+              <div>
+                {/* <SideBar /> */}
+              </div>
+            {/* <div style={{flex: 1}}> */}
+              <Route path='/login' component={LoginPage} />
+              <Route path='/cartpage' component={CartPagee} />
+              <Route path='/forgetpage' component={ForgetPage} />
+              <Route path='/change-password' component={ChangePassPage} />
+              <Route path='/loginadmin' component={LoginAdminPage} />
+              <Route path='/admindashboard' component={AdminDashBoard} />
+              {/* <Route path='/graphicpage' component={GraphicPage} /> */}
+            {/* </div> */}
+          {/* </div> */}
+        </div>
+      )
+    // }
   }
 }
+
+  // render() { 
+  //   return ( 
+  //     <div>
+  //       <div>
+  //         <Header />
+  //       </div>
+  //       <div>
+  //         <div>
+
+  //         </div>
+  //         <SideBar />
+  //       </div>
+  //     <div>
+  //       <Route path='/login' component={LoginPage} />
+  //       <Route path='/cartpage' component={CartPagee} />
+  //       <Route path='/forgetpage' component={ForgetPage} />
+  //       <Route path='/change-password' component={ChangePassPage} />
+  //       <Route path='/loginadmin' component={LoginAdminPage} />
+  //       {/* <Route path='/admindashboard' component={AdminDashBoard} /> */}
+  //       {/* <Route path='/graphicpage' component={GraphicPage} /> */}
+  //     </div>
+  //   </div>
+  //    );
+  // }
  
 // const mapStateToProps = (state) => {
 //   return {

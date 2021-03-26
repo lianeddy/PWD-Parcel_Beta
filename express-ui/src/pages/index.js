@@ -3,7 +3,7 @@ import CartPagee from './CartPagee'
 import ForgetPage from './ForgetPage'
 import ChangePassPage from './ChangePassPage'
 import LoginAdminPage from './LoginAdminPage'
-// import AdminDashBoard from './AdminDashBoard'
+import AdminDashBoard from './AdminDashBoard'
 // import GraphicPage from './GraphicPage'
 
 export {
@@ -12,6 +12,6 @@ export {
   ForgetPage, 
   ChangePassPage,
   LoginAdminPage,
-  // AdminDashBoard,
+  AdminDashBoard,
   // GraphicPage,
 }

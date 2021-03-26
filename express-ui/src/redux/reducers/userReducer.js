@@ -1,8 +1,8 @@
 const INITIAL_STATE = {
-  id: 0,
-  username: "",
-  email: "",
-  roleID: 0,
+  id: 4,
+  username: "kevin",
+  email: "kepinmahen@gmail.com",
+  roleID: 1,
   verified: null,
   loading: false,
   error: "",
