@@ -8,6 +8,7 @@ router.get("/:id", (req, res) => {
   c.id,
   p.productName,
   c.quantity,
+  p.price,
   (c.quantity * p.price) as total
 FROM cart c 
 JOIN products p ON c.productID = p.id
