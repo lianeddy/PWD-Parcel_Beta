@@ -8,6 +8,8 @@ import ProductDetail from "./ProductDetail";
 import ForgetPage from "./ForgetPage";
 import ChangePassPage from "./ChangePassPage";
 import LoginAdminPage from "./LoginAdminPage";
+import UserTransaction from "./UserTransaction";
+import StatusOrder from "./StatusOrder";
 
 export {
   LoginPage,
@@ -20,4 +22,6 @@ export {
   ForgetPage,
   ChangePassPage,
   LoginAdminPage,
+  StatusOrder,
+  UserTransaction,
 };

@@ -12,6 +12,8 @@ import {
   ProductDetail,
   ChangePassPage,
   LoginAdminPage,
+  StatusOrder,
+  UserTransaction,
 } from "./pages";
 import { keepLoginAction } from "./redux/actions";
 import Header from "./component/Header";
@@ -44,6 +46,8 @@ class App extends Component {
         <Route path="/forgetpage" component={ForgetPage} />
         <Route path="/change-password" component={ChangePassPage} />
         <Route path="/loginadmin" component={LoginAdminPage} />
+        <Route path="/transaction" component={UserTransaction} />
+        <Route path="/status" component={StatusOrder} />
       </div>
     );
   }
