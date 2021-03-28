@@ -10,6 +10,7 @@ import ChangePassPage from "./ChangePassPage";
 import LoginAdminPage from "./LoginAdminPage";
 import UserTransaction from "./UserTransaction";
 import StatusOrder from "./StatusOrder";
+import AdminDashBoard from "./AdminDashBoard";
 
 export {
   LoginPage,
@@ -24,4 +25,6 @@ export {
   LoginAdminPage,
   StatusOrder,
   UserTransaction,
+  AdminDashBoard,
+  // GraphicPage,
 };
