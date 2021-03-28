@@ -8,6 +8,7 @@ import {
   VerifyPage, 
   CartPage,
   ProductDetail,
+  StatusOrder,
 UserTransaction} from "./pages";
 
 class App extends Component {
@@ -23,6 +24,8 @@ class App extends Component {
         <Route path="/cart"  component={CartPage} />
         <Route path ="/product-detail" component={ProductDetail} />
         <Route path ="/transaction" component={UserTransaction} />
+        <Route path="/status" component={StatusOrder} />
+
       </div>
     );
   }

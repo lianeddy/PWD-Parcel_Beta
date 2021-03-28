@@ -1,6 +1,7 @@
  const INITIAL_STATE = {
     transactionList: [],
     transactionByID: [],
+    statusByID:[],
     loading: false,
     };
     
@@ -16,11 +17,19 @@
             ...state,
             loading: false,
           };
+
         case "FETCH_TRANSACTION_BY_ID":
           return {
             ...state,
             transactionByID: action.payload,
           };
+          case "FETCH_STATUS_BY_ID":
+            return {
+              ...state,
+              statusByID: action.payload,
+            };
+  
+        
         default:
           return state;
       }

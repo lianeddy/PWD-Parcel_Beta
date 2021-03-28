@@ -66,7 +66,10 @@ class UserTransaction extends Component {
               <div class="col-sm">
               <h5 style={{color:"gray"}}>Status</h5>
               <h5>{val.status}</h5>
-
+            
+              <div> 
+                {val.status === "confirmation" ?
+              ( <div> <Link to="./status" ><Button color="primary" size="sm">Tracking</Button></Link></div>) : null}</div>
               <div> 
                 {val.status === "delivered" ?
               ( <div> <Link to="./status" ><Button color="primary" size="sm">Tracking</Button></Link></div>) : null}</div>

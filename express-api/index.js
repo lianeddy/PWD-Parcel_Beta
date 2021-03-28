@@ -24,25 +24,7 @@ app.get("/", (req, res) => {
     res.status(200).send("<h1>Express API</h1>");
   });
 
-  app.post("/email", (req, res) => {
-    const to = req.query.email;
-    const mailOptions = {
-      from: "Dicky <admin@gmail.com>",
-      to,
-      subject: "Testing NodeMailer",
-      html: `<h1>Hello from nodemailer</h1>`,
-    };
-    if (to) {
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) res.send(500).send(err);
-  
-        return res.status(200).send({
-          message: info,
-          status: "Sent",
-        });
-      });
-    }
-  });
+
   
   app.use("/users", userRouter);
   app.use("/cartp", cartRouter);

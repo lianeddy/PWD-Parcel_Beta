@@ -29,3 +29,17 @@ export const fetchTransactionByIdAction = (id) => {
     };
   };
   
+  export const fetchStatusByIdAction = (id) => {
+    return (dispatch) => {
+      Axios.get(`${api_url}/transaction/status${id}`)
+        .then((res) => {
+          dispatch({
+            type: "FETCH_STATUS_BY_ID",
+            payload: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  };

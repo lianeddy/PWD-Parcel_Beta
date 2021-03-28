@@ -24,4 +24,14 @@ router.get("/:id", (req, res) => {
       return res.status(200).send(data);
     });
   });
+
+  router.get("/status/:id", (req, res) => {
+    const sql = `
+    select * from transaction where id = ${(req.params.id)}`;
+    db.query(sql, (err, data) => {
+      if (err) return res.status(500).send(err);
+      return res.status(200).send(data);
+    });
+  });
+
   module.exports= router;
