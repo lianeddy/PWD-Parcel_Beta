@@ -2,6 +2,8 @@ import Axios from 'axios'
 import { api_url } from '../../helpers/index'
 import Swal from "sweetalert2"
 
+// import { Redirect } from 'react-router';
+
 export const fetchCartAction = (userId) => {
 	return (dispatch) => {
 		Axios.get(`${api_url}/cart?userID=${userId}`)
@@ -31,7 +33,7 @@ export const addToCartAction = (data) => {
       dispatch({
         type: "ADD_TO_CART"
       })
-      dispatch(getCartByIdAction(data.userID))
+      
     })
     .catch((err) => {
       console.log(err)
@@ -46,9 +48,9 @@ export const addToCartAction = (data) => {
   }
 }
 
-export const getCartByIdAction = (id) => {
+export const getCartByIdAction = (userID) => {
   return (dispatch) => {
-    Axios.get(`${api_url}/cart?userID=${id}`)
+    Axios.get(`${api_url}/cart/${userID}`)
       .then(({ data }) => {
         dispatch({
           type: "FETCH_CART",
@@ -81,42 +83,47 @@ export const editCartAction = (data) => {
   };
 };
 
+// export const checkOutAction = (data) => {
+  // return (dispatch) => {
+  //   Axios.post(`${api_url}/transaction`, data)
+  //   .then((res) => {
+  //     console.log("data transaksi masuk")
+  //     data.items.forEach((val) => {
+  //       Axios.delete(`${api_url}/cart/${val.id}`)
+  //       .then((res) => {
+  //         console.log("delete id", val.id)
+  //       })
+  //     })
+  //     dispatch(getCartByIdAction(data.userID))
+  //     Swal.fire("Transaction checkout", "Thank you", "success")
+  //   })
+//     .catch((err) => {
+//       console.log(err)
+//       Swal.fire("Fail", "Sth went wrong", "error")
+//     })
+//   }
+// }
 
 export const checkOutAction = (data) => {
   return (dispatch) => {
-    Axios.post(`${api_url}/transaction`, data)
-      .then((res) => {
-        data.items.forEach((val) => {
-          Axios.get(`${api_url}/products/${val.productID}`)
-          .then(
-            ({ data: { stock } }) => {
-              Axios.patch(`${api_url}/products/${val.productID}`, {
-                stock: stock - val.qty,
-              });
-            }
-          );
-        });
-        data.items.forEach((val) => {
-          Axios.delete(`${api_url}/cart/${val.id}`)
-          .then((res) => {
-            console.log("deleted id", val.id);
-          });
-        });
-        Swal.fire({
-          title: 'Success!',
-          text: 'Thank you!',
-          icon: 'success',
-          timer: 2000
+    dispatch({
+      type: "CHECKOUT",
+    })
+    Axios.post(`${api_url}/cart/transaction`, data)
+    .then((res) => {
+      console.log("data transaksi masuk")
+      data.items.forEach((val) => {
+        Axios.delete(`${api_url}/cart/${val.id}`)
+        .then((res) => {
+          console.log("deleted id", val.id)
         })
       })
-      .catch((err) => {
-        console.log(err);
-        Swal.fire({
-          title: 'Failed',
-          text: 'Something went wrong',
-          icon: 'error',
-          timer: 2000,
-        })
-      });
-  };
-};
+      dispatch(getCartByIdAction(data.userID))
+      Swal.fire("Transaction checkout", "Thank you", "success")
+    })
+    .catch((err) => {
+      console.log(err)
+      Swal.fire("Fail", "sth went wrong", 'error')
+    })
+  }
+}

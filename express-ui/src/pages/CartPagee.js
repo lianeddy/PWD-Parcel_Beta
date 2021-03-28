@@ -28,7 +28,7 @@ class CartPage extends Component {
     const { cartList } = this.props
     let output = 0
     cartList.forEach((val) => {
-      output += val.qty * val.price;
+      output += (val.quantity) * (val.price);
     })
     return output;
   }
@@ -61,7 +61,7 @@ class CartPage extends Component {
       return (
         <tr>
           <td>{index + 1}</td>
-          <td>{val.name}</td>
+          <td>{val.productName}</td>
           <td>
             <img src={val.image} alt={`${val.name}.jpg`} height="150px" />
           </td>
@@ -69,12 +69,12 @@ class CartPage extends Component {
             <Button>
               -
             </Button>
-            <span className="mx-2">{val.qty}</span>
+            <span className="mx-2">{val.quantity}</span>
             <Button>
               +
             </Button>
           </td>
-          <td>Rp.{(val.qty * val.price).toLocaleString()}</td>
+          <td>Rp.{((val.quantity) * val.price).toLocaleString()}</td>
           <td>
             <Button color="danger">
               Delete
@@ -89,7 +89,7 @@ class CartPage extends Component {
     const {redirectHome} = this.state
     const {cartList} = this.props
     if(redirectHome) {
-      return <Redirect to="/" />
+      return <Redirect to="/products" />
     } else if (cartList.length === 0) {
       return (
         <div>

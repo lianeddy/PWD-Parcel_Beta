@@ -1,5 +1,7 @@
 import Axios from 'axios'
 import {api_url} from "../../helpers/index"
+import { getCartByIdAction } from './cartAction';
+
 
 const url = api_url + "/users"
 
@@ -18,6 +20,8 @@ export const loginAction = (data) => {
         token,
       } = response.data;
       localStorage.getItem("token", token);
+      dispatch(getCartByIdAction(data.userID))
+      console.log(data.userID)
       dispatch({
         type: "LOGIN",
         payload: { id, username, email, roleID, verified },
