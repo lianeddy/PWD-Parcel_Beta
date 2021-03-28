@@ -3,7 +3,8 @@ import LandingPage from "./LandingPage";
 import RegisterPage from "./RegisterPage";
 import VerifyPage from "./VerifyPage";
 import CartPage from "./CartPage";
-import ProductDetail from "./ProductDetail"
+import ProductDetail from "./ProductDetail";
+import UserTransaction from "./UserTransaction"
 
 export {
     LoginPage, 
@@ -11,4 +12,5 @@ export {
     RegisterPage, 
     VerifyPage,
     CartPage,
-    ProductDetail};
+    ProductDetail,
+    UserTransaction};

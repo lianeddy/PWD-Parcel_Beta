@@ -7,7 +7,8 @@ import {
   RegisterPage, 
   VerifyPage, 
   CartPage,
-  ProductDetail} from "./pages";
+  ProductDetail,
+UserTransaction} from "./pages";
 
 class App extends Component {
   state = {};
@@ -21,6 +22,7 @@ class App extends Component {
         <Route path="/verify"  component={VerifyPage} />
         <Route path="/cart"  component={CartPage} />
         <Route path ="/product-detail" component={ProductDetail} />
+        <Route path ="/transaction" component={UserTransaction} />
       </div>
     );
   }

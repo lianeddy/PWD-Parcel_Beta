@@ -5,7 +5,7 @@ import {
   } from "../types";
   
   const INITIAL_STATE = {
-    id: 0,
+    id: 2,
     username: "",
     email: "",
     roleID: 0,

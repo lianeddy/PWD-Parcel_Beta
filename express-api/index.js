@@ -8,7 +8,9 @@ const { transporter } = require("./helper");
 const {
   userRouter, 
   cartRouter,
-  productRouter
+  productRouter,
+  transactionRouter,
+  
 } = require("./router");
 
 const app = express();
@@ -43,7 +45,8 @@ app.get("/", (req, res) => {
   });
   
   app.use("/users", userRouter);
-  app.use("/cart", cartRouter);
+  app.use("/cartp", cartRouter);
   app.use("/product", productRouter);
+  app.use("/transaction", transactionRouter)
 
 app.listen(port, () => console.log(`API active at port ${port}`))
