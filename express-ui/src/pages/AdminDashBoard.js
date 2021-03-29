@@ -21,7 +21,7 @@ const AdminDashBoard = () => {
             <Col>
               <Card body inverse color="danger" className="text-center">
                 <CardTitle tag="h5">Produk kurang laku :</CardTitle>
-                <CardText>Rp. {100000000}</CardText>
+                <CardText>Rp. {232323232}</CardText>
               </Card>
             </Col>
           </div>

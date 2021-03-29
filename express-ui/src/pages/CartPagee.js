@@ -89,7 +89,7 @@ class CartPage extends Component {
     const {redirectHome} = this.state
     const {cartList} = this.props
     if(redirectHome) {
-      return <Redirect to="/" />
+      return <Redirect to="/products" />
     } else if (cartList.length === 0) {
       return (
         <div>

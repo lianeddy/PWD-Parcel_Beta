@@ -8,6 +8,8 @@ import {
   LOGIN,
 } from "../types";
 
+import { getCartByIdAction } from "./cartAction";
+
 const url = api_url + "/users";
 
 export const registerAction = (data) => {
@@ -16,6 +18,8 @@ export const registerAction = (data) => {
       const response = await Axios.post(`${url}/login`, data);
       const { id, username, email, roleID, verified, token } = response.data;
       localStorage.getItem("token", token);
+      dispatch(getCartByIdAction(data.userID));
+      console.log(data.userID);
       dispatch({
         type: LOGIN,
         payload: { id, username, email, roleID, verified },
