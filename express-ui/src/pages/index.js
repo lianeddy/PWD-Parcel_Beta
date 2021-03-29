@@ -11,6 +11,9 @@ import LoginAdminPage from "./LoginAdminPage";
 import UserTransaction from "./UserTransaction";
 import StatusOrder from "./StatusOrder";
 import AdminDashBoard from "./AdminDashBoard";
+import ProductPage from "./ProductPage";
+import JumbotronPage from "./JumbotronPage";
+import PaginationPage from "./PaginationPage";
 
 export {
   LoginPage,
@@ -25,6 +28,4 @@ export {
   LoginAdminPage,
   StatusOrder,
   UserTransaction,
-  AdminDashBoard,
-  // GraphicPage,
 };

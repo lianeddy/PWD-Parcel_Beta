@@ -16,11 +16,15 @@ import {
   UserTransaction,
   // GraphicPage,
   AdminDashBoard,
+  ProductPage,
+  JumbotronPage,
 } from "./pages";
 import { keepLoginAction } from "./redux/actions";
 import Header from "./component/Header";
 // import ChangePassPage from './pages/ChangePassPage';
 // import { loginAction } from './redux/actions'
+import { FooterPage, Header } from "./components";
+// import { loginAction } from "./redux/action";
 
 class App extends Component {
   state = {};
@@ -51,6 +55,9 @@ class App extends Component {
         <Route path="/cartpage" component={CartPagee} />
         <Route path="/change-password" component={ChangePassPage} />
         <Route path="/admindashboard" component={AdminDashBoard} />
+
+        <Route path="/products" component={ProductPage} />
+        <FooterPage />
       </div>
     );
   }

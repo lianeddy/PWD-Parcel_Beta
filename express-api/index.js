@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
   
   app.use("/users", userRouter);
   app.use("/cartp", cartRouter);
-  app.use("/product", productRouter);
+  app.use("/products", productRouter);
   app.use("/transaction", transactionRouter)
 
 

@@ -1,27 +1,31 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-  import {
-    Collapse,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Nav,
-    Navbar,
-    NavbarBrand,
-    NavbarText,
-    NavbarToggler,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-  } from "reactstrap";
-  
-import logo from "../logo/cover.png"
+import {
+  Collapse,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Nav,
+  Navbar,
+  NavbarBrand,
+  NavbarText,
+  NavbarToggler,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+} from "reactstrap";
+import { logoutAction } from "../redux/actions";
+import logo from "../logo/cover.png";
+import HomeIcon from "@material-ui/icons/Home";
+import CartIcon from "@material-ui/icons/ShoppingCart";
+import FoodIcon from "@material-ui/icons/Fastfood";
+import Receipt from "@material-ui/icons/Receipt";
 
-class Header extends Component {
+class NavigationBar extends Component {
   state = {
     isOpen: false,
   };
-
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen,
@@ -29,33 +33,76 @@ class Header extends Component {
   };
 
   render() {
+    const { email } = this.props;
     return (
       <div>
-        <Navbar  light expand="md" style={{backgroundColor:"#FAEAF0"}}>
-          <NavbarBrand> <Link to="/"><img src={logo} alt="logo" style={{width:"30 px", height:"70px" }} /> </Link></NavbarBrand>
+        <Navbar style={{ backgroundColor: "#FAEAF0" }} light expand="md">
+          <NavbarBrand>
+            {" "}
+            <Link to="/">
+              <img
+                src={logo}
+                alt="logo"
+                style={{ width: "30 px", height: "70px" }}
+              />{" "}
+            </Link>
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
+              <NavLink href="/">
+                <HomeIcon />
+              </NavLink>
               <NavItem>
-                <NavLink href="/">Home</NavLink>  
+                <NavLink href="/cartpage">
+                  <CartIcon />
+                </NavLink>
               </NavItem>
-              
-              
-              <UncontrolledDropdown nav inNavbar>
+              <NavLink href="/products">
+                <FoodIcon />
+              </NavLink>
+              {this.props.email !== "" ? (
+                <NavLink href="/transaction">
+                  <Receipt />
+                  Transaction
+                </NavLink>
+              ) : null}
+            </Nav>
+            {this.props.email !== "" ? (
+              <UncontrolledDropdown>
                 <DropdownToggle nav caret>
-                  Categories
+                  Halo {email.split("@")[0]}
                 </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Chocolate</DropdownItem>
-                  <DropdownItem>Syrup</DropdownItem>
-                  <DropdownItem>Biscuit</DropdownItem>
+                <DropdownMenu left>
+                  <Link to="/">
+                    <DropdownItem onClick={this.props.logoutAction}>
+                      Log Out
+                    </DropdownItem>
+                  </Link>
+                  <Link to="/loginadmin">
+                    <DropdownItem>as Admin</DropdownItem>
+                  </Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
-            </Nav>
+            ) : (
+              <UncontrolledDropdown>
+                <DropdownToggle nav caret>
+                  User
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <Link to="/login">
+                    <DropdownItem>Login</DropdownItem>
+                  </Link>
+                  <Link to="/register">
+                    <DropdownItem>Register</DropdownItem>
+                  </Link>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            )}
 
-            <NavbarText><Link to="/Register" style={{textDecoration:"none", color:"brown"}}> Register</Link></NavbarText>
-            <NavbarText>&nbsp;| &nbsp;  </NavbarText>
-            <NavbarText><Link to="/login" style={{textDecoration:"none", color:"brown"}}> Login</Link></NavbarText>
+            {this.props.email ? (
+              <NavbarText>{this.props.email}</NavbarText>
+            ) : null}
           </Collapse>
         </Navbar>
       </div>
@@ -63,4 +110,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStatetoProps = ({ user }) => {
+  return {
+    email: user.email,
+  };
+};
+
+export default connect(mapStatetoProps, { logoutAction })(NavigationBar);
