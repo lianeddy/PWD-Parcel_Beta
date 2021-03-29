@@ -53,6 +53,11 @@ export const productReducer = (state = INITIAL_STATE, action) => {
         ...state,
         productById: action.payload,
       };
+    case "FETCH_PRODUCTS":
+      return {
+        ...state,
+        productList: action.payload
+      }
     default:
       return state;
   }

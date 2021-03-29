@@ -28,4 +28,8 @@ export {
   LoginAdminPage,
   StatusOrder,
   UserTransaction,
+  AdminDashBoard,
+  ProductPage,
+  JumbotronPage,
+  PaginationPage
 };

@@ -15,20 +15,32 @@ const url = api_url + "/users";
 export const registerAction = (data) => {
   return async (dispatch) => {
     try {
-      const response = await Axios.post(`${url}/login`, data);
-      const { id, username, email, roleID, verified, token } = response.data;
-      localStorage.getItem("token", token);
-      dispatch(getCartByIdAction(data.userID));
-      console.log(data.userID);
+      dispatch({ type: API_USER_START });
+      const response = await Axios.post(`${url}/register`, data);
+      if( response.status === 202 ){
+        dispatch({
+          type: API_USER_SUCCESS,
+        });
+        return Swal.fire(response.data.message)
+      }
+      const {
+        id,
+        username,
+        email,
+        roleID,
+        verified,
+        token,
+      } = response.data;
+      localStorage.setItem("token", token);
       dispatch({
         type: LOGIN,
         payload: { id, username, email, roleID, verified },
       });
       Swal.fire({
-        icon: "success",
-        title: "Anda telah berhasil register",
-        text: "Cek email untuk verifikasi akun ",
-      });
+        icon: 'success',
+        title: 'Anda telah berhasil register',
+        text: 'Cek email untuk verifikasi akun ',
+      })
 
       dispatch({
         type: API_USER_SUCCESS,
@@ -41,6 +53,7 @@ export const registerAction = (data) => {
     }
   };
 };
+
 
 export const emailVerificationAction = (data) => {
   return async (dispatch) => {
@@ -65,20 +78,7 @@ export const emailVerificationAction = (data) => {
   };
 };
 
-// export const keepLoginAction = (id) => {
-//   return (dispatch) => {
-//     Axios.get(`${url}/keep-login/${id}`)
-//     .then((res) => {
-//       dispatch({
-//         type: "LOGIN",
-//         payload: res.data,
-//       })
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//     })
-//   }
-// }
+
 
 export const keepLoginAction = () => {
   return async (dispatch) => {
@@ -151,6 +151,40 @@ export const sendEmailChangeAction = (data) => {
     }
   };
 };
+
+export const loginAction = (data) => {
+  return async (dispatch) => {
+    dispatch({ type: "NULLIFY_ERROR" })
+    dispatch({ type: "API_USER_START" });
+    try {
+      const response = await Axios.post(`${url}/login`, data);
+      const {
+        id,
+        username,
+        email,
+        roleID,
+        verified,
+        token,
+      } = response.data;
+      localStorage.getItem("token", token);
+      dispatch(getCartByIdAction(data.userID))
+      console.log(data.userID)
+      dispatch({
+        type: LOGIN,
+        payload: { id, username, email, roleID, verified },
+      });
+      dispatch({
+        type: API_USER_SUCCESS,
+      });
+    } catch (err) {
+      dispatch({
+        type: "API_USER_FAILED",
+        payload: err.message,
+      });
+    }
+  };
+};
+
 
 export const logoutAction = () => {
   return (dispatch) => {

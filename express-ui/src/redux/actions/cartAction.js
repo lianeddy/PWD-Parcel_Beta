@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 export const fetchCartAction = (userId) => {
   return (dispatch) => {
-    Axios.get(`${api_url}/cart?userID=${userId}`)
+    Axios.get(`${api_url}/cartp?userID=${userId}`)
       .then((res) => {
         dispatch({
           type: "FETCH_CART",
@@ -19,36 +19,12 @@ export const fetchCartAction = (userId) => {
   };
 };
 
-export const addToCartAction = (data) => {
-  return (dispatch) => {
-    Axios.post(`${api_url}/cart`, data)
-    .then((res) => {
-      Swal.fire({
-        position: 'top-end',
-        title: 'Success!',
-        text: 'Added to cart',
-        icon: 'success',
-        timer: 1500
-      })
-      dispatch({
-        type: "ADD_TO_CART"
-      })
-    })
-    .catch((err) => {
-      console.log(err)
-      Swal.fire({
-        position: 'bottom-end',
-        title: 'Failed',
-        text: 'Something went wrong',
-        icon: 'error',
-        timer: 2000
-      })
-  };
-};
+
+
 
 export const getCartByIdAction = (userID) => {
   return (dispatch) => {
-    Axios.get(`${api_url}/cart/${userID}`)
+    Axios.get(`${api_url}/cartp/${userID}`)
       .then(({ data }) => {
         dispatch({
           type: "FETCH_CART",
@@ -61,9 +37,39 @@ export const getCartByIdAction = (userID) => {
   };
 };
 
+export const addToCartAction = (data) => {
+  return(dispatch) => {
+    Axios.post(`${api_url}/cartp`, data)
+    .then((res) => {
+      Swal.fire({
+        position: 'top-end',
+        title: 'Success!',
+        text: 'Added to cart',
+        icon: 'success',
+        timer: 1500
+      })
+      dispatch({
+        type: "ADD_TO_CART"
+      })
+      
+    })
+    .catch((err) => {
+      console.log(err)
+      Swal.fire({
+        position: 'bottom-end',
+        title: 'Failed',
+        text: 'Something went wrong',
+        icon: 'error',
+        timer: 2000
+      })
+    })
+  }
+}
+
+
 export const editCartAction = (data) => {
   return (dispatch) => {
-    Axios.patch(`${api_url}/cart/${data.id}`, {
+    Axios.patch(`${api_url}/cartp/${data.id}`, {
       qty: data.qty,
     })
       .then((res) => {
@@ -107,7 +113,7 @@ export const checkOutAction = (data) => {
     dispatch({
       type: "CHECKOUT",
     })
-    Axios.post(`${api_url}/cart/transaction`, data)
+    Axios.post(`${api_url}/cartp/transaction`, data)
     .then((res) => {
       console.log("data transaksi masuk")
       data.items.forEach((val) => {
@@ -125,3 +131,4 @@ export const checkOutAction = (data) => {
     })
   }
 }
+

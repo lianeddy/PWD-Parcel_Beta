@@ -9,7 +9,6 @@ import {
   Nav,
   Navbar,
   NavbarBrand,
-  NavbarText,
   NavbarToggler,
   NavItem,
   NavLink,
@@ -50,22 +49,22 @@ class NavigationBar extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
-              <NavLink href="/">
+              <Link to= "/">
                 <HomeIcon />
-              </NavLink>
+              </Link>
               <NavItem>
-                <NavLink href="/cartpage">
+                <Link to="/cartpage">
                   <CartIcon />
-                </NavLink>
+                </Link>
               </NavItem>
-              <NavLink href="/products">
+               <Link to="/products">
                 <FoodIcon />
-              </NavLink>
+              </Link>
               {this.props.email !== "" ? (
-                <NavLink href="/transaction">
+                <Link to="/transaction">
                   <Receipt />
                   Transaction
-                </NavLink>
+                </Link>
               ) : null}
             </Nav>
             {this.props.email !== "" ? (
@@ -99,10 +98,6 @@ class NavigationBar extends Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
             )}
-
-            {this.props.email ? (
-              <NavbarText>{this.props.email}</NavbarText>
-            ) : null}
           </Collapse>
         </Navbar>
       </div>
@@ -113,6 +108,7 @@ class NavigationBar extends Component {
 const mapStatetoProps = ({ user }) => {
   return {
     email: user.email,
+    userID : user.email
   };
 };
 

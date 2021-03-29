@@ -57,7 +57,7 @@ router.get("/products", (req, res) => {
   });
 });
 
-router.get("/product/:id", (req, res) => {
+router.get("/products/:id", (req, res) => {
   const id = parseInt(req.params.id);
   db.query(`SELECT * FROM products WHERE id = ${id}`, (err, data) => {
     if (err) {

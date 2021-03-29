@@ -2,11 +2,9 @@ const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const mysql = require("mysql")
-const { userRouter, cartRouter } = require("./router")
 const { transporter } = require("./helper")
 const bearerToken = require("express-bearer-token");
 const port = 2000;
-const { transporter } = require("./helper");
 const {
   userRouter, 
   cartRouter,

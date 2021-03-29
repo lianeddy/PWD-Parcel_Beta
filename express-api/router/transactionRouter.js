@@ -1,11 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { db } = require("../database");
-const { default: Swal } = require("sweetalert2");
-const { api_url } = require("../../express-ui/src/helpers");
-const { getCartByIdAction } = require("../../express-ui/src/redux/actions");
-const router = express.Router();
-const db = require("../database");
 
 router.get("/", (req, res) => {
   let sql = `select t.id, t.date, t.userID, p.productName, p.imagepath, t.quantity, p.price, (p.price * t.quantity)as total , ts.name as status from transaction t 
@@ -39,23 +34,23 @@ router.get("/:id", (req, res) => {
     });
   });
 
-  router.post("/", (req, res) => {
-    try {
-      const {data} = req.body
-      data.forEach((val) => {
-        Axios.delete(`${api_url}/${val.id}`)
-        .then((res) => {
-          console.log("deleted id", val.id)
-        })
-      })
-      dispatch(getCartByIdAction(data.userID))
+  // router.post("/", (req, res) => {
+  //   try {
+  //     const {data} = req.body
+  //     data.forEach((val) => {
+  //       Axios.delete(`${api_url}/${val.id}`)
+  //       .then((res) => {
+  //         console.log("deleted id", val.id)
+  //       })
+  //     })
+  //     dispatch(getCartByIdAction(data.userID))
      
-    }
-    .catch((err) => {
+  //   }
+  //   .catch((err) => {
   
       
   
-    })
-  })
+  //   })
+  // })
 
   module.exports= router;

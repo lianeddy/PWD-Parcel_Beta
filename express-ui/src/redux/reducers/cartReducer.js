@@ -1,5 +1,3 @@
-import { API_CART } from "../types";
-
 const INITIAL_STATE = {
   cart: [],
 };

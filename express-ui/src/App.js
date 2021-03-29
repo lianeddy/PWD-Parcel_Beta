@@ -4,10 +4,8 @@ import { Route } from "react-router-dom";
 import {
   ForgetPage,
   LoginPage,
-  LandingPage,
   RegisterPage,
   VerifyPage,
-  CartPage,
   CartPagee,
   ProductDetail,
   ChangePassPage,
@@ -20,7 +18,6 @@ import {
   JumbotronPage,
 } from "./pages";
 import { keepLoginAction } from "./redux/actions";
-import Header from "./component/Header";
 // import ChangePassPage from './pages/ChangePassPage';
 // import { loginAction } from './redux/actions'
 import { FooterPage, Header } from "./components";
@@ -43,11 +40,10 @@ class App extends Component {
         {/* <Route path='/cartpage' component={CartPage} /> */}
         <Route path="/forgetpage" component={ForgetPage} />
         {/* <Route path='/change-password' component={ChangePassPage} /> */}
-        <Route path="/" exact component={LandingPage} />
+        <Route path="/" exact component={JumbotronPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/verify" component={VerifyPage} />
-        <Route path="/cart" component={CartPage} />
         <Route path="/product-detail" component={ProductDetail} />
         <Route path="/loginadmin" component={LoginAdminPage} />
         <Route path="/transaction" component={UserTransaction} />
@@ -55,7 +51,6 @@ class App extends Component {
         <Route path="/cartpage" component={CartPagee} />
         <Route path="/change-password" component={ChangePassPage} />
         <Route path="/admindashboard" component={AdminDashBoard} />
-
         <Route path="/products" component={ProductPage} />
         <FooterPage />
       </div>
@@ -63,10 +58,4 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     userId: state.user.id,
-//   }
-// }
-
-export default connect(null, { keepLoginAction })(App);
+export default connect(null, { keepLoginAction  })(App);

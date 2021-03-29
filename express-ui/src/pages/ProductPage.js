@@ -4,6 +4,7 @@ import {
   fetchProductsAction,
   fetchCategoriesAction,
   fetchbyCategoryAction,
+  fetchProductsActionan
 } from "../redux/actions";
 import Select from "react-select";
 import { CarouselPage, ProductCard } from "../components";
@@ -21,10 +22,10 @@ class ProductPage extends Component {
   };
 
   componentDidMount() {
-    const { fetchCategoriesAction, fetchProductsAction } = this.props;
+    const { fetchCategoriesAction, fetchProductsActionan } = this.props;
     let { hargamax, hargamin } = this.state;
     fetchCategoriesAction();
-    fetchProductsAction(hargamax, hargamin);
+    fetchProductsActionan(hargamax, hargamin);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -56,7 +57,7 @@ class ProductPage extends Component {
     return productList.map((val) => {
       return (
         <div className="m-2">
-          <Link to={`/products-detail?id=${val.id}`}>
+          <Link to={`/product-detail?id=${val.id}`}>
             <ProductCard
               imagePath={`${api_url}${val.imagePath}`}
               productName={val.productName}
@@ -247,9 +248,10 @@ class ProductPage extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    categories: state.products.categories,
-    productList: state.products.productList,
-    loading: state.products.loading,
+    categories: state.product.categories,
+    productList: state.product.productList,
+    loading: state.product.loading,
+    
   };
 };
 
@@ -257,4 +259,5 @@ export default connect(mapStatetoProps, {
   fetchCategoriesAction,
   fetchProductsAction,
   fetchbyCategoryAction,
+  fetchProductsActionan
 })(ProductPage, PaginationPage);

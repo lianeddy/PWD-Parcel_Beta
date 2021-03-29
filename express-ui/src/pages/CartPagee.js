@@ -6,6 +6,7 @@ import {
 } from "../redux/actions"
 import { Button, Table } from "reactstrap"
 import { Redirect } from "react-router-dom"
+import { api_url } from "../helpers"
 
 class CartPage extends Component {
   state = {
@@ -23,6 +24,10 @@ class CartPage extends Component {
       getCartByIdAction(userID);
     }
   }
+  deleteCart = (id) => {
+    const { deleteCartAction, userID } = this.props;
+    deleteCartAction(id, userID);
+  };
 
   renderGrandTotal = () => {
     const { cartList } = this.props
@@ -63,7 +68,7 @@ class CartPage extends Component {
           <td>{index + 1}</td>
           <td>{val.productName}</td>
           <td>
-            <img src={val.image} alt={`${val.name}.jpg`} height="150px" />
+            <img src={val.imagepath ? `${api_url}${val.imagepath}`: null} alt={`${val.productName}.jpg`} height="150px" />
           </td>
           <td>
             <Button>
@@ -74,7 +79,7 @@ class CartPage extends Component {
               +
             </Button>
           </td>
-          <td>Rp.{((val.quantity * val.price).toLocaleString()}</td>
+          <td>Rp.{((val.quantity * val.price).toLocaleString())}</td>
           <td>
             <Button color="danger">
               Delete

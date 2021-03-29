@@ -60,7 +60,7 @@ export const fetchCategoriesAction = () => {
   };
 };
 
-export const fetchProductsAction = (hargamax, hargamin) => {
+export const fetchProductsActionan = (hargamax, hargamin) => {
   return (dispatch) => {
     dispatch({
       type: "FETCH_START",
@@ -97,5 +97,20 @@ export const fetchbyCategoryAction = (id) => {
         })
         .catch((err) => console.log(err));
     }
+  };
+};
+
+export const fetchProductByIdAction = (id) => {
+  return (dispatch) => {
+    Axios.get(`${api_url}/products/${id}`)
+      .then((res) => {
+        dispatch({
+          type: "FETCH_BY_ID",
+          payload: res.data[0],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };

@@ -114,7 +114,7 @@ class UserTransaction extends Component {
       )
   }
   return (
-    <Redirect to="/product" /> 
+    <Redirect to="/products" /> 
    )
   }
 }
